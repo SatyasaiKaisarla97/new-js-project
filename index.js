@@ -12,7 +12,7 @@ function saveData(e) {
     'description': productName,
     'category': productCategory,
   };
-  axios.post('https://crudcrud.com/api/3b785ee70f594f9781e1f1cd899dca9c/products', my_obj)
+  axios.post('https://crudcrud.com/api/40c1def9c4b04c05a1d21480d4f98973/products', my_obj)
     .then(res => console.log(res))
     .catch(err => console.log(err))
   my_objSerialized = JSON.stringify(my_obj);
@@ -29,14 +29,14 @@ function showOutput(productDetails) {
   const li = document.createElement("li");
   let details =
     productDetails.amount + '-' +
-    productDetails.category + '-' +
-    productDetails.description;
+    productDetails.description + '-' +
+    productDetails.category;
 
   const deleteBtn = document.createElement("input");
   const editBtn = document.createElement("input");
 
   deleteBtn.type = "button";
-  deleteBtn.value = "Delete Producct";
+  deleteBtn.value = "Delete Product";
   deleteBtn.style.marginLeft='10px';
 
   editBtn.type = "button";
@@ -72,7 +72,7 @@ function showOutput(productDetails) {
     deleteBtn.parentElement.innerText = " ";
     li.style.listStyle = "none";
     let id = productDetails._id
-        axios.delete(`https://crudcrud.com/api/3b785ee70f594f9781e1f1cd899dca9c/products/${id}` )
+        axios.delete(`https://crudcrud.com/api/40c1def9c4b04c05a1d21480d4f98973/products/${id}` )
         .then(res => {
             window.location.reload();
             console.log(res)})
@@ -85,14 +85,14 @@ function showOutput(productDetails) {
   function editData(e) {
     e.preventDefault();
     let id = productDetails._id
-    axios.put(`https://crudcrud.com/api/3b785ee70f594f9781e1f1cd899dca9c/products/${id}`,
+    axios.put(`https://crudcrud.com/api/40c1def9c4b04c05a1d21480d4f98973/products/${id}`,
     {
         'amount': document.getElementById('selling-price').value,
         'description':document.getElementById('product-name').value ,
         'category':document.getElementById('product-category').value
     }
     ).then(res => console.log(res)).catch(err => console.log(err))
-    axios.delete(`https://crudcrud.com/api/3b785ee70f594f9781e1f1cd899dca9c/products/${id}` )
+    axios.delete(`https://crudcrud.com/api/40c1def9c4b04c05a1d21480d4f98973/products/${id}` )
         .then(res => {
             console.log(res)})
         .catch(err => console.log(err))
@@ -106,7 +106,7 @@ function showOutput(productDetails) {
 }
 
 window.addEventListener('DOMContentLoaded', () =>{
-    axios.get('https://crudcrud.com/api/3b785ee70f594f9781e1f1cd899dca9c/products')
+    axios.get('https://crudcrud.com/api/40c1def9c4b04c05a1d21480d4f98973/products')
     .then(res => {console.log(res.data)
     for(let i=0; i<res.data.length; i++){
         if(res.data[i] != null){
